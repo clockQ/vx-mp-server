@@ -4,6 +4,11 @@ import xml.etree.ElementTree as ET
 
 
 def parse_xml(web_data):
+    """
+    解析接受到的粉丝消息
+    :param web_data: xml 格式的消息体
+    :return:
+    """
     if len(web_data) == 0:
         return None
 
@@ -18,6 +23,9 @@ def parse_xml(web_data):
 
 
 class Msg(object):
+    """
+    粉丝消息的基类
+    """
     def __init__(self, xml_data):
         self.ToUserName = xml_data.find('ToUserName').text
         self.FromUserName = xml_data.find('FromUserName').text
@@ -27,12 +35,18 @@ class Msg(object):
 
 
 class TextMsg(Msg):
+    """
+    文本型消息
+    """
     def __init__(self, xml_data):
         Msg.__init__(self, xml_data)
         self.Content = xml_data.find('Content').text
 
 
 class ImageMsg(Msg):
+    """
+    图片型消息
+    """
     def __init__(self, xml_data):
         Msg.__init__(self, xml_data)
         self.PicUrl = xml_data.find('PicUrl').text
@@ -40,6 +54,9 @@ class ImageMsg(Msg):
 
 
 class VoiceMsg(Msg):
+    """
+    语音型消息
+    """
     def __init__(self, xml_data):
         Msg.__init__(self, xml_data)
         self.MediaId = xml_data.find('MediaId').text
