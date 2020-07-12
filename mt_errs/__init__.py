@@ -18,4 +18,4 @@ class UnknownMsgTypeErr(MtErr):
         self.msg_type = msg_type
 
     def __str__(self):
-        return f"暂时不能处理 {self.mapping.get(self.msg_type, self.msg_type)} 类型消息"
+        return f"暂时不能处理 '{self.mapping.get(self.msg_type, self.msg_type)}'"

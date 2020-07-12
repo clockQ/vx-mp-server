@@ -21,7 +21,7 @@ def parse_xml(web_data):
         receive_file = getattr(msg_module, 'receive')
         msg_obj = getattr(receive_file, f'{msg_type.title()}Msg')
     except AttributeError:
-        raise UnknownMsgTypeErr(msg_type)
+        return ErrMsg(xml_data, UnknownMsgTypeErr(msg_type))
     else:
         return msg_obj(xml_data)
 
@@ -36,6 +36,15 @@ class Msg(object):
         self.CreateTime = xml_data.find('CreateTime').text.strip('\n').strip()
         self.MsgType = xml_data.find('MsgType').text.strip('\n').strip()
         self.MsgId = xml_data.find('MsgId').text.strip('\n').strip()
+
+
+class ErrMsg(Msg):
+    """
+    无法正确处理的消息
+    """
+    def __init__(self, xml_data, err):
+        Msg.__init__(self, xml_data)
+        self.err = err
 
 
 class TextMsg(Msg):
@@ -66,5 +75,3 @@ class VoiceMsg(Msg):
         self.MediaId = xml_data.find('MediaId').text.strip('\n').strip()
         self.Format = xml_data.find('Format').text.strip('\n').strip()
         self.Recognition = xml_data.find('Recognition').text.strip('\n').strip()
-
-

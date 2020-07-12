@@ -4,9 +4,9 @@ import web
 import hashlib
 
 import mt_msg.receive as mrc
-import mt_choice
+import mt_msg.reply as mrp
 import mt_auth
-from mt_errs import UnknownMsgTypeErr
+import mt_choice
 
 
 class Handle(object):
@@ -53,12 +53,19 @@ class Handle(object):
             if rec_msg is None:
                 return 'success'
 
+            if isinstance(rec_msg, mrc.ErrMsg):
+                return mrp.TextMsg(
+                    to_user_name=rec_msg.FromUserName,
+                    from_user_name=rec_msg.ToUserName,
+                    content=rec_msg.err
+                ).send()
+
             # 根据用户信息获取用户身份
             identity = mt_auth.auth_verify(rec_msg)
             # 根据消息获得用户行为
-            purpose = mt_choice.get_purpose_by_msg(rec_msg)
+            purpose = mt_choice.get_purpose_by_msg(identity, rec_msg)
             # 根据用户身份和行为执行相应动作
             return mt_choice.do(identity, purpose)
-        except (UnknownMsgTypeErr, Exception) as err:
+        except Exception as err:
             print(f"handle/POST {type(err)} 异常, msg => {err}")
             return err
