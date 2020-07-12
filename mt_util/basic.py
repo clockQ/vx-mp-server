@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# filename: basic.py
+# filename: util/basic.py
 import os
 import urllib.request
 import time

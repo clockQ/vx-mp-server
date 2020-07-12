@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
-# filename: menu.py
+# filename: util/menu.py
 import urllib.request
-from util.basic import Basic
+from mt_util.basic import Basic
+
 
 """
 权限不足，无法使用
 """
+
 
 class Menu(object):
     def __init__(self):

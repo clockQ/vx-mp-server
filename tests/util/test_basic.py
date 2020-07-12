@@ -1,4 +1,4 @@
-from util.basic import Basic
+from mt_util.basic import Basic
 
 
 def test_get_access_token():

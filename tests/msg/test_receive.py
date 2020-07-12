@@ -1,4 +1,4 @@
-import msg.receive as mrc
+import mt_msg.receive as mrc
 
 
 def test_process_text_msg():

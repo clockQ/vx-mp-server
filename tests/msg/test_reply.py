@@ -1,4 +1,4 @@
-import msg.reply as mrp
+import mt_msg.reply as mrp
 
 
 def test_process_text_msg():
