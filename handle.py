@@ -52,7 +52,6 @@ class Handle(object):
             rec_msg = mrc.parse_xml(data)
             if rec_msg is None:
                 return 'success'
-
             if isinstance(rec_msg, mrc.ErrMsg):
                 return mrp.TextMsg(
                     to_user_name=rec_msg.FromUserName,
@@ -65,7 +64,7 @@ class Handle(object):
             # 根据消息获得用户行为
             purpose = mt_choice.get_purpose_by_msg(identity, rec_msg)
             # 根据用户身份和行为执行相应动作
-            return mt_choice.do(identity, purpose)
+            return purpose(rec_msg)
         except Exception as err:
             print(f"handle/POST {type(err)} 异常, msg => {err}")
             return err

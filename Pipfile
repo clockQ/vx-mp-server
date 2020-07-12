@@ -8,6 +8,7 @@ pytest = "*"
 
 [packages]
 web-py = "*"
+fuzzywuzzy = "*"
 
 [requires]
 python_version = "3.8"
