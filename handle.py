@@ -53,12 +53,12 @@ class Handle(object):
             if rec_msg is None:
                 return 'success'
 
-            # 根据用户信息获取粉丝角色
-            role = mt_auth.auth_verify(rec_msg)
+            # 根据用户信息获取用户身份
+            identity = mt_auth.auth_verify(rec_msg)
             # 根据消息获得用户行为
             purpose = mt_choice.get_purpose_by_msg(rec_msg)
-            # 根据用户行为执行响应动作
-            return mt_choice.do(purpose)
+            # 根据用户身份和行为执行相应动作
+            return mt_choice.do(identity, purpose)
         except (UnknownMsgTypeErr, Exception) as err:
             print(f"handle/POST {type(err)} 异常, msg => {err}")
             return err
