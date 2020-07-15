@@ -78,21 +78,21 @@ class NewsMsg(Msg):
         """
         单个图文类型消息
         """
-        def __init__(self, title, desc, pic_url, url):
+        def __init__(self, *args, **kwargs):
             self.__dict = dict()
-            self.__dict['title'] = title
-            self.__dict['desc'] = desc
-            self.__dict['pic_url'] = pic_url
-            self.__dict['url'] = url
+            self.__dict['title'] = kwargs['title']
+            self.__dict['desc'] = kwargs['desc']
+            self.__dict['pic_url'] = kwargs['pic_url']
+            self.__dict['url'] = kwargs['url']
 
         def send(self):
             xml_form = """
-                <item>
-                    <Title><![CDATA[{title}]]></Title>
-                    <Description><![CDATA[{desc}]]></Description>
-                    <PicUrl><![CDATA[{pic_url}]]></PicUrl>
-                    <Url><![CDATA[{url}]]></Url>
-                </item>
+                    <item>
+                        <Title><![CDATA[{title}]]></Title>
+                        <Description><![CDATA[{desc}]]></Description>
+                        <PicUrl><![CDATA[{pic_url}]]></PicUrl>
+                        <Url><![CDATA[{url}]]></Url>
+                    </item>
             """
             return xml_form.format(**self.__dict)
 

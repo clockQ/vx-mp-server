@@ -1,5 +1,8 @@
 from enum import Enum
-from mt_util.csv import load_users_by_csv
+from mt_util.csv import load_lstdic_from_csv
+
+
+USERS_CVS_PATH = r'users.csv'
 
 
 class Identity(object):
@@ -29,7 +32,7 @@ def __str2role(string):
         return Role.VISITORS
 
 
-__all_users = load_users_by_csv(r'users.csv')
+__all_users = []
 
 
 def auth_verify(msg) -> Identity:
@@ -38,11 +41,18 @@ def auth_verify(msg) -> Identity:
     :param msg: 粉丝消息
     :return: 身份认证信息
     """
+    global __all_users
+    if len(__all_users):
+        all_users = __all_users
+    else:
+        __all_users = load_lstdic_from_csv(USERS_CVS_PATH)
+        all_users = __all_users
+
     open_id = msg.FromUserName
-    find_users = [user for user in __all_users if open_id == user['id']]
+    find_users = [user for user in all_users if open_id == user['id']]
 
     if len(find_users) < 1:
-        find_user = [user for user in __all_users if 'unknown' == user['id']][0]
+        find_user = [user for user in all_users if 'unknown' == user['id']][0]
     else:
         find_user = find_users[0]
 

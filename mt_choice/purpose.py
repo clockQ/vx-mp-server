@@ -3,11 +3,16 @@ import mt_msg.reply as mrp
 from mt_auth import Role
 from mt_choice import zhihu
 
+zhihu.load_db()
 
 all_purpose = {
     '刷新数据库': (zhihu.flush_db, [Role.SUADMIN]),
+    '专栏列表': (zhihu.get_columns, [Role.SUADMIN]),
     '随机文章': (zhihu.random_articles, [Role.FANS]),
-    '出题': (zhihu.set_question, [Role.FANS]),
+    '给我一篇': (zhihu.random_articles, [Role.FANS]),
+    '随机出题': (zhihu.set_question, [Role.FANS]),
+    '给我一道': (zhihu.set_question, [Role.FANS]),
+    '给我答案': (zhihu.get_answer, [Role.FANS]),
 }
 
 

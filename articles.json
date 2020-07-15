@@ -1,0 +1,38 @@
+[
+    {
+        "title": "Bitbucket 使用手册",
+        "desc": "Bitbucket 是什么 Bitbucket是Atlassian公司提供的一个基于web的版本库托管服务，支持Mercurial和 <b>Git</b> 版本控制系统。<b>可以简单的理解为，它就是一个自建的 Git 仓库，不过可以对分支和合并操作进行控制。当然功能远不止于此。</b> Bitbucket能够与Atlassian的其…",
+        "comment_permission": "all",
+        "url": "http://zhuanlan.zhihu.com/p/159071804",
+        "created": 1594623526,
+        "updated": 1594777258,
+        "pic_url": "https://picb.zhimg.com/v2-f4a0a16fc089bcf74e95e4c8f3892dfa_b.png"
+    },
+    {
+        "title": "<Git> Git学习笔记",
+        "desc": "一. Git 介绍Git作为一款分布式的 <b>版本控制</b> 工具，作为一名程序员，是必须要掌握的。Git最初由林纳斯·托瓦兹（Linus Torvalds）创作，于2005年以GPL发布。最初目的是为更好地管理Linux内核开发而设计。后来git内核已经成熟到可以独立地用作版本控制，使的…",
+        "comment_permission": "all",
+        "url": "http://zhuanlan.zhihu.com/p/159035868",
+        "created": 1594606982,
+        "updated": 1594641599,
+        "pic_url": ""
+    },
+    {
+        "title": "计算机编码的发展史",
+        "desc": "文章大多摘自<a href=\"https://link.zhihu.com/?target=https%3A//blog.csdn.net/zxh2075/article/details/53064160\" class=\" wrap external\" target=\"_blank\" rel=\"nofollow noreferrer\">各种编码详解</a>一、常见编码发展过程ASCII =&gt; GB2312 =&gt; GBK =&gt; ISO-8859-1(UNICODE) =&gt; UTF-8(UNICODE)\n\n编码 | 表示方式 \n---|--- \nASCII | 单字节（0-127）\n扩展字符集 | 单字节（127-255） \nGB2312 | 双字节（127+, 127+） \nGBK | 双字节（12…",
+        "comment_permission": "all",
+        "url": "http://zhuanlan.zhihu.com/p/158976603",
+        "created": 1594564336,
+        "updated": 1594641734,
+        "pic_url": ""
+    },
+    {
+        "title": "<物> Docker 到底是什么？",
+        "desc": "Docker(dāo kē)背景 Docker是近年来新兴的 <b>虚拟化工具</b>，它可以和虚拟机一样实现资源和系统环境的隔离。Docker 是 PaaS 提供商 dotCloud 开源的一个基于 <b>LXC</b> 的 <b>高级容器引擎</b>，源代码托管在 Github 上, 基于go语言并遵从Apache2.0协议开源。Docker自2013年…",
+        "comment_permission": "all",
+        "url": "http://zhuanlan.zhihu.com/p/158527476",
+        "created": 1594368637,
+        "updated": 1594641659,
+        "pic_url": "https://picb.zhimg.com/v2-c86ed02ba9a4f93736573f9ba5ae1e2d_b.jpg"
+    }
+]

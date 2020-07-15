@@ -1,7 +1,7 @@
 import csv
 
 
-def load_users_by_csv(file_path):
+def load_lstdic_from_csv(file_path):
     with open(file_path, 'r') as file:
         csvreader = csv.reader(file)
         final_list = list(csvreader)

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-#
 # filename: msg/receive.py
 import xml.etree.ElementTree as ET
-from mt_errs import UnknownMsgTypeErr
+import mt_errs
 
 
 def parse_xml(web_data):
@@ -21,7 +21,7 @@ def parse_xml(web_data):
         receive_file = getattr(msg_module, 'receive')
         msg_obj = getattr(receive_file, f'{msg_type.title()}Msg')
     except AttributeError:
-        return ErrMsg(xml_data, UnknownMsgTypeErr(msg_type))
+        return ErrMsg(xml_data, mt_errs.UnknownMsgTypeErr(msg_type))
     else:
         return msg_obj(xml_data)
 

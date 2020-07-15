@@ -19,3 +19,17 @@ class UnknownMsgTypeErr(MtErr):
 
     def __str__(self):
         return f"暂时不能处理 '{self.mapping.get(self.msg_type, self.msg_type)}'"
+
+
+class FileLockErr(MtErr):
+    def __str__(self):
+        return f"文件上锁，无法执行"
+
+
+class ZhiHuErr(MtErr):
+    def __init__(self, err_code, err_msg):
+        self.err_code = err_code
+        self.err_msg = err_msg
+
+    def __str__(self):
+        return f'知乎函数异常，错误码：{self.err_code}, 错误信息：{self.err_msg}'
