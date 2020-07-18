@@ -18,7 +18,7 @@ class Handle(object):
             data = web.input()
             print(f"handle/GET 接受参数 {data}")
 
-            if len(data) == 0:
+            if not data:
                 return "后端接口已启动"
 
             signature = data.signature
@@ -50,7 +50,7 @@ class Handle(object):
 
             # 消息处理
             rec_msg = mrc.parse_xml(data)
-            if rec_msg is None:
+            if not rec_msg:
                 return 'success'
             if isinstance(rec_msg, mrc.ErrMsg):
                 return mrp.TextMsg(

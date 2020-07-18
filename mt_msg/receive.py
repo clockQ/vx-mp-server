@@ -10,7 +10,7 @@ def parse_xml(web_data):
     :param web_data: xml 格式的消息体
     :return:
     """
-    if len(web_data) == 0:
+    if not web_data:
         return None
 
     xml_data = ET.fromstring(web_data)

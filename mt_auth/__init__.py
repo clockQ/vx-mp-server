@@ -42,7 +42,7 @@ def auth_verify(msg) -> Identity:
     :return: 身份认证信息
     """
     global __all_users
-    if len(__all_users):
+    if __all_users:
         all_users = __all_users
     else:
         __all_users = load_lstdic_from_csv(USERS_CVS_PATH)
@@ -51,7 +51,7 @@ def auth_verify(msg) -> Identity:
     open_id = msg.FromUserName
     find_users = [user for user in all_users if open_id == user['id']]
 
-    if len(find_users) < 1:
+    if not find_users:
         find_user = [user for user in all_users if 'unknown' == user['id']][0]
     else:
         find_user = find_users[0]

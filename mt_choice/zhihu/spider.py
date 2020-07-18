@@ -36,7 +36,7 @@ def get_all_columns(columns_api=COLUMNS_API):
 
     next_url = json['paging']['next']
     data = json['data']
-    if not len(data):
+    if not data:
         return []
 
     columns = []
@@ -102,7 +102,7 @@ def get_all_articles(articles_api=ARTICLES_API):
 
     next_url = json['paging']['next']
     data = json['data']
-    if not len(data):
+    if not data:
         return [], {}
 
     articles = []
@@ -170,13 +170,13 @@ def load_db():
     global all_articles
     global all_qas
 
-    if len(all_columns) == 0:
+    if not all_columns:
         with open(COLUMNS_FILE, 'r') as f:
             all_columns = json.load(f)
-    if len(all_articles) == 0:
+    if not all_articles:
         with open(ARTICLES_FILE, 'r') as f:
             all_articles = json.load(f)
-    if len(all_qas) == 0:
+    if not all_qas:
         with open(QAS_FILE, 'r') as f:
             all_qas = json.load(f)
 
