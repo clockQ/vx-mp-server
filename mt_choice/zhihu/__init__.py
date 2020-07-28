@@ -78,16 +78,36 @@ def specify_articles(msg: mrc.Msg):
 __user_qa = {}
 
 
-def set_question(msg: mrc.Msg):
+def random_question(msg: mrc.Msg):
+    global __user_qa
+
+    all_questions = list(spider.all_qas.keys())
+    question_count = len(all_questions)
+
+    rd_num = random.randint(0, question_count-1)
+    question = all_questions[rd_num]
+    __user_qa[msg.FromUserName] = question
+
+    reply_msg = mrp.TextMsg(msg.FromUserName, msg.ToUserName, '[随机问题] ' + question)
+    return reply_msg.send()
+
+
+def specify_question(msg: mrc.Msg):
     global __user_qa
 
     all_question = spider.all_qas.keys()
     text = __get_text_from_msg(msg)
-    extract_result = process.extractOne(text, all_question)
+    extract_result = process.extractOne(text[4:], all_question)
 
-    __user_qa[msg.FromUserName] = extract_result[0]
-    reply_msg = mrp.TextMsg(msg.FromUserName, msg.ToUserName, extract_result[0])
-    return reply_msg.send()
+    # 匹配率大于 50% 的返回指定问题
+    if extract_result[1] > 50:
+        __user_qa[msg.FromUserName] = extract_result[0]
+        reply_msg = mrp.TextMsg(msg.FromUserName, msg.ToUserName, extract_result[0])
+        return reply_msg.send()
+
+    # 否则返回随机问题
+    else:
+        return random_question(msg)
 
 
 def get_answer(msg: mrc.Msg):

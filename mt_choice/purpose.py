@@ -9,8 +9,8 @@ all_purpose = {
     '刷新数据库': (zhihu.flush_db, [Role.SUADMIN]),
     '随机文章': (zhihu.random_articles, [Role.FANS]),
     '给我一篇': (zhihu.specify_articles, [Role.FANS]),
-    '随机出题': (zhihu.set_question, [Role.FANS]),
-    '给我一道': (zhihu.set_question, [Role.FANS]),
+    '随机出题': (zhihu.random_question, [Role.FANS]),
+    '给我一道': (zhihu.specify_question, [Role.FANS]),
     '给我答案': (zhihu.get_answer, [Role.FANS]),
     '随机专栏': (zhihu.random_columns, [Role.SUADMIN]),
 }

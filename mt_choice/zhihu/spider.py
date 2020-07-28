@@ -72,17 +72,22 @@ def get_pic_QA_from_article(article_url):
     # 使用正则分析出 >问<: ~~~~~~ <答> 中间的内容，
     # 不过不知道为啥，response_text 中总是有两个同样的问题，但有一个的 html 标签是 16 进制编码
     # 没有办法，只能使用 map 去重了
-    all_qa = re.finditer(r'&gt;问&lt;：(.*?)&lt;答&gt;', response_text)
+    all_qa = re.finditer(r'&gt;问&lt;[:：](.*?)&lt;答&gt;', response_text)
     qa_dict = {}
     for qa in all_qa:
+        if '003C' in qa.group(1):
+            continue
+
         sp = qa.group(1).split('&lt;问&gt;')
-        an = sp[0].replace('<b>','').replace('</b>', '')\
-            .replace('<p>','').replace('</p>', '\n')\
-            .strip('\n')
-        qu = sp[1].replace('&gt;答&lt;', '')\
-            .replace('<b>', '').replace('</b>', '')\
-            .replace('<p>', '').replace('</p>', '\n')\
-            .strip('\n')
+
+        an = sp[0].replace('</p>', '\n')
+        an = re.sub(r'<(/?).*?>', '', an)
+        an = an.strip('\n').strip()
+
+        qu = sp[1].replace('&gt;答&lt;', '').replace('</p>', '\n').strip('\n').strip()
+        qu = re.sub(r'<(/?).*?>', '', qu)
+        qu = qu.strip('\n').strip()
+
         # 利用 map 去除重复 question
         qa_dict.setdefault(an, qu)
 
