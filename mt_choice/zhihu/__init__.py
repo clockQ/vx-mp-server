@@ -1,8 +1,11 @@
+import copy
 import random
+
+from fuzzywuzzy import process
+
 import mt_msg.receive as mrc
 import mt_msg.reply as mrp
 import mt_choice.zhihu.spider as spider
-from fuzzywuzzy import process
 
 
 load_db = spider.load_db
@@ -12,11 +15,6 @@ def flush_db(msg: mrc.Msg):
     spider.flush_db()
     content = "数据库刷新完成"
     reply_msg = mrp.TextMsg(msg.FromUserName, msg.ToUserName, content)
-    return reply_msg.send()
-
-
-def get_columns(msg: mrc.Msg):
-    reply_msg = mrp.NewsMsg(msg.FromUserName, msg.ToUserName, spider.all_columns)
     return reply_msg.send()
 
 
@@ -31,25 +29,50 @@ def __get_text_from_msg(msg: mrc.Msg):
     return text
 
 
+def random_columns(msg: mrc.Msg):
+    all_columns_title = [columns['title'] for columns in spider.all_columns]
+    text = __get_text_from_msg(msg)
+    extract_result = process.extractOne(text[4:], all_columns_title)
+    # 匹配率大于 10% 的返回指定专栏
+    if extract_result[1] > 10:
+        columns_index = all_columns_title.index(extract_result[0])
+        column = spider.all_columns[columns_index:columns_index+1]
+        reply_msg = mrp.NewsMsg(msg.FromUserName, msg.ToUserName, column)
+        return reply_msg.send()
+
+    # 否则返回随机专栏
+    else:
+        columns_count = len(all_columns_title)
+        rd_num = random.randint(1, columns_count)
+        columns = spider.all_columns[rd_num-1:rd_num]
+        reply_msg = mrp.NewsMsg(msg.FromUserName, msg.ToUserName, columns)
+        return reply_msg.send()
+
+
 def random_articles(msg: mrc.Msg):
+    articles_count = len(spider.all_articles)
+    rd_num = random.randint(0, articles_count-1)
+    articles = copy.copy(spider.all_articles[rd_num])
+    articles['title'] = '[随机文章] ' + articles['title']
+    reply_msg = mrp.NewsMsg(msg.FromUserName, msg.ToUserName, [articles])
+    return reply_msg.send()
+
+
+def specify_articles(msg: mrc.Msg):
     all_articles_title = [articles['title'] for articles in spider.all_articles]
     text = __get_text_from_msg(msg)
-    extract_result = process.extractOne(text, all_articles_title)
+    extract_result = process.extractOne(text[4:], all_articles_title)
 
     # 匹配率大于 50% 的返回指定文章
     if extract_result[1] > 50:
         articles_index = all_articles_title.index(extract_result[0])
-        article = spider.all_articles[articles_index:articles_index+1]
-        reply_msg = mrp.NewsMsg(msg.FromUserName, msg.ToUserName, article)
+        articles = spider.all_articles[articles_index:articles_index+1]
+        reply_msg = mrp.NewsMsg(msg.FromUserName, msg.ToUserName, articles)
         return reply_msg.send()
 
     # 否则返回随机文章
     else:
-        articles_count = len(all_articles_title)
-        rd_num = random.randint(1, articles_count)
-        articles = spider.all_articles[rd_num-1:rd_num]
-        reply_msg = mrp.NewsMsg(msg.FromUserName, msg.ToUserName, articles)
-        return reply_msg.send()
+        return random_articles(msg)
 
 
 __user_qa = {}

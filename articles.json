@@ -1,38 +1,74 @@
 [
     {
-        "title": "Bitbucket 使用手册",
-        "desc": "Bitbucket 是什么 Bitbucket是Atlassian公司提供的一个基于web的版本库托管服务，支持Mercurial和 <b>Git</b> 版本控制系统。<b>可以简单的理解为，它就是一个自建的 Git 仓库，不过可以对分支和合并操作进行控制。当然功能远不止于此。</b> Bitbucket能够与Atlassian的其…",
+        "title": "<事> 这是你要的生活吗？",
+        "desc": "摘自一位不愿透露姓名的朋友《活着的意义是什么？》 [图片] 两点一线的工作节奏，写着在以后肯定会被推翻的代码，拿着比业界平均水平还低的工资，还要随时准备干些杂活，偶尔背一背锅。 30岁左右，从北京回到二三线城市，换了个差不多的工作，凑了个首付，买了个婚…",
         "comment_permission": "all",
-        "url": "http://zhuanlan.zhihu.com/p/159071804",
-        "created": 1594623526,
-        "updated": 1594777258,
-        "pic_url": "https://picb.zhimg.com/v2-f4a0a16fc089bcf74e95e4c8f3892dfa_b.png"
-    },
-    {
-        "title": "<Git> Git学习笔记",
-        "desc": "一. Git 介绍Git作为一款分布式的 <b>版本控制</b> 工具，作为一名程序员，是必须要掌握的。Git最初由林纳斯·托瓦兹（Linus Torvalds）创作，于2005年以GPL发布。最初目的是为更好地管理Linux内核开发而设计。后来git内核已经成熟到可以独立地用作版本控制，使的…",
-        "comment_permission": "all",
-        "url": "http://zhuanlan.zhihu.com/p/159035868",
-        "created": 1594606982,
-        "updated": 1594641599,
+        "url": "https://zhuanlan.zhihu.com/p/164465123",
+        "created": 1595823211,
+        "updated": 1595907833,
         "pic_url": ""
     },
     {
-        "title": "计算机编码的发展史",
-        "desc": "文章大多摘自<a href=\"https://link.zhihu.com/?target=https%3A//blog.csdn.net/zxh2075/article/details/53064160\" class=\" wrap external\" target=\"_blank\" rel=\"nofollow noreferrer\">各种编码详解</a>一、常见编码发展过程ASCII =&gt; GB2312 =&gt; GBK =&gt; ISO-8859-1(UNICODE) =&gt; UTF-8(UNICODE)\n\n编码 | 表示方式 \n---|--- \nASCII | 单字节（0-127）\n扩展字符集 | 单字节（127-255） \nGB2312 | 双字节（127+, 127+） \nGBK | 双字节（12…",
+        "title": "<物> Docker 到底是什么？",
+        "desc": "Docker(dāo kē)背景 [图片] Docker是近年来新兴的 虚拟化工具，它可以和虚拟机一样实现资源和系统环境的隔离。Docker 是 PaaS 提供商 dotCloud 开源的一个基于 LXC 的 高级容器引擎，源代码托管在 Github 上, 基于go语言并遵从Apache2.0协议开源。Docker自2013年…",
         "comment_permission": "all",
-        "url": "http://zhuanlan.zhihu.com/p/158976603",
+        "url": "https://zhuanlan.zhihu.com/p/158527476",
+        "created": 1594368637,
+        "updated": 1594641659,
+        "pic_url": "https://picb.zhimg.com/v2-c86ed02ba9a4f93736573f9ba5ae1e2d_b.jpg"
+    },
+    {
+        "title": "计算机编码的发展史",
+        "desc": "文章大多摘自 各种编码详解 一、常见编码发展过程ASCII => GB2312 => GBK => ISO-8859-1(UNICODE) => UTF-8(UNICODE) 编码 | 表示方式 ---|--- ASCII | 单字节（0-127） 扩展字符集 | 单字节（127-255） GB2312 | 双字节（127+, 127+） GBK | 双字节（127+, …",
+        "comment_permission": "all",
+        "url": "https://zhuanlan.zhihu.com/p/158976603",
         "created": 1594564336,
         "updated": 1594641734,
         "pic_url": ""
     },
     {
-        "title": "<物> Docker 到底是什么？",
-        "desc": "Docker(dāo kē)背景 Docker是近年来新兴的 <b>虚拟化工具</b>，它可以和虚拟机一样实现资源和系统环境的隔离。Docker 是 PaaS 提供商 dotCloud 开源的一个基于 <b>LXC</b> 的 <b>高级容器引擎</b>，源代码托管在 Github 上, 基于go语言并遵从Apache2.0协议开源。Docker自2013年…",
+        "title": "<Test> 一篇入门 —— Gatling 性能测试手册",
+        "desc": "介绍本篇博客，旨在记录学习的要点，所以格式随意， 方便本人日后自考和回忆，有兴趣的朋友可以评论讨论。 原文链接 《旻天：<Test> 一篇入门 —— Gatling 性能测试手册》： https://zhuanlan.zhihu.com/p/164730813 一. 性能测试基础1.1 性能测试是什么？性能测试是通过自动…",
         "comment_permission": "all",
-        "url": "http://zhuanlan.zhihu.com/p/158527476",
-        "created": 1594368637,
-        "updated": 1594641659,
-        "pic_url": "https://picb.zhimg.com/v2-c86ed02ba9a4f93736573f9ba5ae1e2d_b.jpg"
+        "url": "https://zhuanlan.zhihu.com/p/164730813",
+        "created": 1595909869,
+        "updated": 1595909869,
+        "pic_url": "https://picb.zhimg.com/v2-fbfdb7090771d43628dbf12b44a760c9_b.jpg"
+    },
+    {
+        "title": "<Linux> LVM 原理及应用",
+        "desc": "一、 LVM 概念LVM(Logical Volume Manager)可以让分区变得弹性，可以随时随地的扩大和缩小分区大小，前提是该分区是LVM格式的。 lvm 需要使用的软件包为 lvm2，一般在 各个 Linux 发行版中都已经预安装了。 原文链接 《旻天：<Linux> LVM 原理及应用》： …",
+        "comment_permission": "all",
+        "url": "https://zhuanlan.zhihu.com/p/164723576",
+        "created": 1595906456,
+        "updated": 1595907756,
+        "pic_url": ""
+    },
+    {
+        "title": "<Linux> linux 学习总结",
+        "desc": "一、Linux 初学介绍 [图片] 1. 介绍Linux开源、稳定、免费、安全，在处理多并发已经得到了业界认可，目前的中型大型甚至巨型项目都在使用Linux。 2. Linux学习流程第一阶段:Linux平台开发，包括vi、gcc、gdb、make、jdk、tomcat、mysql和linux基本操作。 第二阶段:…",
+        "comment_permission": "all",
+        "url": "https://zhuanlan.zhihu.com/p/164707125",
+        "created": 1595905445,
+        "updated": 1595906080,
+        "pic_url": "https://picb.zhimg.com/v2-a5f7e807ed47c5c0a198c51af3b1a4db_b.jpg"
+    },
+    {
+        "title": "Bitbucket 使用手册",
+        "desc": "Bitbucket 是什么 [图片] Bitbucket是Atlassian公司提供的一个基于web的版本库托管服务，支持Mercurial和 Git 版本控制系统。 可以简单的理解为，它就是一个自建的 Git 仓库，不过可以对分支和合并操作进行控制。当然功能远不止于此。 Bitbucket能够与Atlassian的…",
+        "comment_permission": "all",
+        "url": "https://zhuanlan.zhihu.com/p/159071804",
+        "created": 1594623526,
+        "updated": 1594777258,
+        "pic_url": "https://picb.zhimg.com/v2-f4a0a16fc089bcf74e95e4c8f3892dfa_b.png"
+    },
+    {
+        "title": "<Git> Git 学习笔记",
+        "desc": "一. Git 介绍 [图片] Git作为一款分布式的 版本控制 工具，作为一名程序员，是必须要掌握的。Git最初由林纳斯·托瓦兹（Linus Torvalds）创作，于2005年以GPL发布。最初目的是为更好地管理Linux内核开发而设计。后来git内核已经成熟到可以独立地用作版本控制，使的…",
+        "comment_permission": "all",
+        "url": "https://zhuanlan.zhihu.com/p/159035868",
+        "created": 1594606982,
+        "updated": 1595907816,
+        "pic_url": ""
     }
 ]

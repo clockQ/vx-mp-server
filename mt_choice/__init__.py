@@ -14,7 +14,7 @@ def __get_purpose_by_text(identity, text):
     purpose_obj = extract_purpose[0]
     purpose_level_lst = extract_purpose[1]
 
-    # 检查权限
+    # TODO 可以改成 set 的 issubset() 或 issuperset() 检查权限
     purpose_require_level = max([role.value for role in purpose_level_lst])
     fans_level = max([role.value for role in identity.groups])
     if fans_level < purpose_require_level:

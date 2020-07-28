@@ -15,12 +15,14 @@ def test_get_pic_QA_from_article():
 
 
 def test_get_all_articles():
-    articles, qas = zh_spider.get_all_articles()
+    articles, qas = zh_spider.get_articles_by_columns('http://www.zhihu.com/api/v4/columns/c_1264948535747125248/items')
+    assert len(articles)
     for r in articles:
-        print(r)
+        assert r != {}
 
+    assert len(qas)
     for r in qas:
-        print(r)
+        assert r != {}
 
 
 def test_flush_db():

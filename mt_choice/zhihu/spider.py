@@ -3,9 +3,8 @@ import re
 import os
 import json
 
-BASE_URL = 'https://zhuanlan.zhihu.com'
+ZL_BASE_URL = 'https://zhuanlan.zhihu.com'
 COLUMNS_API = 'https://www.zhihu.com/api/v4/members/clockQ/column-contributions'
-ARTICLES_API = 'https://www.zhihu.com/api/v4/members/clockQ/articles'
 
 LOCK_DB_FILE = 'db.lock'
 COLUMNS_FILE = 'columns.json'
@@ -32,10 +31,10 @@ def get_all_columns(columns_api=COLUMNS_API):
     :return: list[{'title': 标题,,,,},]
     """
     response = requests.get(columns_api, headers=__headers, params={})
-    json = response.json()
+    resp_json = response.json()
 
-    next_url = json['paging']['next']
-    data = json['data']
+    next_url = resp_json['paging']['next']
+    data = resp_json['data']
     if not data:
         return []
 
@@ -46,7 +45,8 @@ def get_all_columns(columns_api=COLUMNS_API):
             'title': column['title'],
             'desc': '旻天知乎专栏',
             'comment_permission': column['comment_permission'],
-            'url': f'{BASE_URL}/{column["id"]}',
+            'api_url': column['url'],
+            'url': f'{ZL_BASE_URL}/{column["id"]}',
             'created': 0,
             'updated': column['updated'],
             'pic_url': column['image_url'],
@@ -89,19 +89,18 @@ def get_pic_QA_from_article(article_url):
     return first_png_url, qa_dict
 
 
-def get_all_articles(articles_api=ARTICLES_API):
+def get_articles_by_columns(columns_articles_api):
     """
-    从知乎的后端接口中获得所有的文章信息
-    :param articles_api: 文章接口
+    从知乎的后端接口中获得指定专栏的文章信息
+    :param columns_articles_api: 专栏文章接口
     :return: articles, qas
         articles:   list[{'title': 标题,,,,},],
         qas:        list[{'title': 'XXX问题', 'text': 'XXX答案'},,,]
     """
-    response = requests.get(articles_api, headers=__headers, params={})
-    json = response.json()
-
-    next_url = json['paging']['next']
-    data = json['data']
+    response = requests.get(columns_articles_api, headers=__headers, params={})
+    resp_json = response.json()
+    next_url = resp_json['paging']['next']
+    data = resp_json['data']
     if not data:
         return [], {}
 
@@ -122,14 +121,14 @@ def get_all_articles(articles_api=ARTICLES_API):
             'pic_url': first_png_url,
         })
 
-    next_articles, next_qas = get_all_articles(next_url)
+    next_articles, next_qas = get_articles_by_columns(next_url)
     qas.update(next_qas)
     return articles + next_articles, qas
 
 
 all_columns = []
 all_articles = []
-all_qas = []
+all_qas = {}
 
 
 def flush_db():
@@ -149,7 +148,13 @@ def flush_db():
 
     try:
         all_columns = get_all_columns()
-        all_articles, all_qas = get_all_articles()
+        all_articles = []
+        all_qas = {}
+
+        for columns in all_columns:
+            articles, qas = get_articles_by_columns(columns['api_url'] + '/items')
+            all_articles += articles
+            all_qas.update(qas)
 
         with open(COLUMNS_FILE, 'w') as f:
             json.dump(all_columns, f, ensure_ascii=False, indent=4)
@@ -171,13 +176,16 @@ def load_db():
     global all_qas
 
     if not all_columns:
-        with open(COLUMNS_FILE, 'r') as f:
-            all_columns = json.load(f)
+        if os.path.exists(COLUMNS_FILE):
+            with open(COLUMNS_FILE, 'r') as f:
+                all_columns = json.load(f)
     if not all_articles:
-        with open(ARTICLES_FILE, 'r') as f:
-            all_articles = json.load(f)
+        if os.path.exists(COLUMNS_FILE):
+            with open(ARTICLES_FILE, 'r') as f:
+                all_articles = json.load(f)
     if not all_qas:
-        with open(QAS_FILE, 'r') as f:
-            all_qas = json.load(f)
+        if os.path.exists(COLUMNS_FILE):
+            with open(QAS_FILE, 'r') as f:
+                all_qas = json.load(f)
 
     return all_columns, all_articles, all_qas
